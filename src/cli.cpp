@@ -129,14 +129,14 @@ int CLI::run(int argc, char* argv[]) {
 
             repo.requireRepository();
 
-            if (argc < 4 || std::string(argv[2]) != "-m")
+            if (argc < 4 || string(argv[2]) != "-m")
                 throw MVSException("Usage: mvs commit -m \"message\"");
 
-            std::string message = argv[3];
+            string message = argv[3];
 
-            std::string hash = Commit::create(message);
+            string hash = Commit::create(message);
 
-            std::cout << "[main " << hash.substr(0,7) << "] "
+            cout << "[main " << hash.substr(0,7) << "] "
                     << message << "\n";
 
             return 0;
