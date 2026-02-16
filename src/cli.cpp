@@ -1,4 +1,5 @@
 #include "index.h"
+#include "commit.h"
 #include "cli.h"
 #include "object_store.h"
 #include "repository.h"
@@ -123,6 +124,24 @@ int CLI::run(int argc, char* argv[]) {
             cout << "Added " << filePath << "\n";
             return 0;
         }
+
+        if (command == "commit") {
+
+            repo.requireRepository();
+
+            if (argc < 4 || std::string(argv[2]) != "-m")
+                throw MVSException("Usage: mvs commit -m \"message\"");
+
+            std::string message = argv[3];
+
+            std::string hash = Commit::create(message);
+
+            std::cout << "[main " << hash.substr(0,7) << "] "
+                    << message << "\n";
+
+            return 0;
+        }
+
 
 
         throw MVSException("Unknown command: " + command);
