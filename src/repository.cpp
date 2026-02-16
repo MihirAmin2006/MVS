@@ -32,7 +32,7 @@ void Repository::init(bool bare) {
             fs::create_directory("refs");
 
             ofstream headFile("HEAD");
-            headFile << "ref: refs/main\n";
+            headFile << "";
             headFile.close();
 
             Logger::info("Bare repository structure created.");
@@ -45,7 +45,7 @@ void Repository::init(bool bare) {
             fs::create_directory(".mvs/refs");
 
             ofstream headFile(".mvs/HEAD");
-            headFile << "ref: refs/main\n";
+            headFile << "";
             headFile.close();
 
             ofstream indexFile(".mvs/index");

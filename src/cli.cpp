@@ -1,4 +1,5 @@
 #include "index.h"
+#include "log.h"
 #include "commit.h"
 #include "cli.h"
 #include "object_store.h"
@@ -24,7 +25,8 @@ static void printHelp() {
     "  --help                Show help message\n"
     "  --verbose             Enable debug output\n"
     "  hash-object <file>    Hash file and store as object\n"
-    "  add <file>            Add file to staging area\n";
+    "  add <file>            Add file to staging area\n"
+    "  log                   Show commit history\n";
 }
 
 int CLI::run(int argc, char* argv[]) {
@@ -142,7 +144,10 @@ int CLI::run(int argc, char* argv[]) {
             return 0;
         }
 
-
+        if (command == "log") {
+            Log::show();
+            return 0;
+        }
 
         throw MVSException("Unknown command: " + command);
 
